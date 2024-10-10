@@ -2,6 +2,7 @@ package com.example.one_to_one.repository;
 
 import com.example.one_to_one.entity.Instructor;
 
+import com.example.one_to_one.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,10 @@ public class AppDao {
     public Instructor saveInstructor(Instructor instructor) {
         return entityManager.merge(instructor);
     }
+
+    @Transactional
+    public InstructorDetail saveInstructorDetail(InstructorDetail instructorDetail) {
+        return  entityManager.merge(instructorDetail);
+    }
+
 }
