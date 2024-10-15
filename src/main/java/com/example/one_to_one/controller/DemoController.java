@@ -22,10 +22,12 @@ public class DemoController {
 
         return appDao.saveInstructor(instructor);
     }
+
     @GetMapping("/getbyid/{instructorId}")
     public Instructor getInstructorById(@PathVariable int instructorId) {
         return appDao.getInstructorById(instructorId);
     }
+
     @GetMapping("/getall")
     public List<Instructor> getAllInstructors() {
         return appDao.getAllInstructors();
@@ -58,5 +60,21 @@ public class DemoController {
         } else {
             return null;
         }
+    }
+
+    @GetMapping("/find-detail/{instructorDetailId}")
+    public InstructorDetail getInstructorDetailById(@PathVariable int instructorDetailId) {
+
+        return appDao.findInstructorDetailById(instructorDetailId);
+    }
+
+    @PostMapping("/saveDetail")
+    public Instructor saveInstructorDetail(@RequestBody InstructorDetail instructorDetail) {
+
+        Instructor instructor = instructorDetail.getInstructor();
+        instructor.setInstructorDetail(instructorDetail);
+
+        return appDao.saveInstructor(instructor);
+
     }
 }

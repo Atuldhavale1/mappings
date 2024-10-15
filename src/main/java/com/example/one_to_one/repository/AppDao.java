@@ -69,6 +69,10 @@ public class AppDao {
 //        }
 //
 //    }
+public InstructorDetail findInstructorDetailById(int instructorDetailId) {
+
+    return entityManager.find(InstructorDetail.class, instructorDetailId);
+}
 }
 
 

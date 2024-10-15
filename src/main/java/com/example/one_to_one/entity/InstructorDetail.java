@@ -1,9 +1,7 @@
 package com.example.one_to_one.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -20,4 +18,9 @@ public class InstructorDetail {
     private String hobby;
 
     private String qualification;
+
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} ,mappedBy = "instructorDetail")
+    @JsonBackReference
+    private Instructor instructor;
+
 }
