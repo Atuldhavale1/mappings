@@ -17,7 +17,7 @@ public class Instructor {
 
     private String phone;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 }
