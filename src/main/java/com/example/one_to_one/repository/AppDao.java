@@ -73,6 +73,32 @@ public InstructorDetail findInstructorDetailById(int instructorDetailId) {
 
     return entityManager.find(InstructorDetail.class, instructorDetailId);
 }
+    @Transactional
+    public String deleteInstructorDetailById(int instructorDetailId) {
+
+        InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, instructorDetailId);
+        if (instructorDetail != null) {
+            Instructor instructor = instructorDetail.getInstructor();
+            instructor.setInstructorDetail(null);
+            entityManager.remove(instructorDetail);
+            return "Deleted successfully";
+        } else {
+            return "Not Found!!";
+        }
+    }
+
+    @Transactional
+    public Instructor updateInstrutorDetail(int instructorId, InstructorDetail instructorDetail) {
+
+        Instructor instructor = entityManager.find(Instructor.class, instructorId);
+        if(instructor != null) {
+            instructor.setInstructorDetail(instructorDetail);
+            return  entityManager.merge(instructor);
+        }else{
+            return  null;
+        }
+    }
+
 }
 
 

@@ -15,10 +15,6 @@ public class DemoController {
 
     @PostMapping("/save")
     public Instructor saveInstructor(@RequestBody Instructor instructor) {
-        InstructorDetail instructorDetail = instructor.getInstructorDetail();
-        instructorDetail = appDao.saveInstructorDetail(instructorDetail); // 1002
-
-        instructor.setInstructorDetail(instructorDetail);
 
         return appDao.saveInstructor(instructor);
     }
@@ -77,4 +73,18 @@ public class DemoController {
         return appDao.saveInstructor(instructor);
 
     }
+    @DeleteMapping("/delete-detail/{instructorDetailId}")
+    public String deleteByInstructorDetailId(@PathVariable int instructorDetailId) {
+        String message = appDao.deleteInstructorDetailById(instructorDetailId);
+
+        return message;
+
+    }
+
+    @PutMapping("/update-detail/{instructorId}")
+    public Instructor updateInstructorDetail(@PathVariable int instructorId, @RequestBody InstructorDetail instructorDetail) {
+
+        return appDao.updateInstrutorDetail(instructorId, instructorDetail);
+    }
+
 }
